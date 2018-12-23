@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #myapps
     'users.apps.UsersConfig',
     'company.apps.CompanyConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,4 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'index_company'
+LOGIN_REDIRECT_URL = 'company_list'
+LOGIN_URL = 'user_log_in'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

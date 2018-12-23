@@ -1,0 +1,12 @@
+{% extends 'company/base.html' %}
+{% block body %}
+	{% for company in companies %}
+		<a href ="{% url 'company_detail' company.pk %}">{{company.name}}</a>
+		{{company.name}}
+		{{company.name}}
+		{{company.name}}
+		{{company.name}}
+		{{company.name}}
+		<br>
+	{% endfor %}
+{% endblock %}

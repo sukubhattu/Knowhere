@@ -9,6 +9,9 @@
 <body>
 	{% block nav %}
 		<div class = "container">
+			<a href = "{% url 'company_list'%}">
+				<button type="button" class="btn btn-outline-primary btn-sm">Home</button>
+			</a>
 			{% if user.is_authenticated %}
 				<a href = "{% url 'user_log_out'%}"><button > Log Out </button></a>
 				<a href = "#"><button > Profile </button></a>
@@ -20,7 +23,11 @@
 			{% endif %}
 		</div>
 	{% endblock %}
-
+	{% if messages %}
+		{% for message in messages %}
+		{{message}}
+		{% endfor %}
+	{% endif %}
 	{% block body %}
 
 	{% endblock %}
