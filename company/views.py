@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import CompanyModelForm
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Company
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 class CompanyListView(ListView):
@@ -13,6 +14,38 @@ class CompanyListView(ListView):
 class CompanyDetailView(DetailView):
 	model = Company
 	template_name = 'company/company_detail.html'
+
+class CompanyCreateView(LoginRequiredMixin, CreateView):
+	model = Company
+	fields = ['name', 'description']
+
+	def form_valid(self, form):
+		form.instance.owner = self.request.user
+		return super().form_valid(form)
+
+class CompanyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Company
+	fields = ['name', 'description']
+
+	def form_valid(self, form):
+		form.instance.owner = self.request.user
+		return super().form_valid(form)
+
+	def test_func(self):
+		company = self.get_object()
+		if self.request.user == company.owner:
+			return True
+		return False
+
+class CompanyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Company
+	success_url = '/company'
+	def test_func(self):
+		company = self.get_object()
+		if self.request.user == company.owner:
+			return True
+		return False
+
 
 @login_required
 def create_company(request):
