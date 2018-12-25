@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #myapps
-    'bootstrap_modal_forms',
+    
     'users.apps.UsersConfig',
     'company.apps.CompanyConfig',
 ]
