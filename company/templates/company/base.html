@@ -6,31 +6,174 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<title></title>
 </head>
-<body>
+<body class=" p-3 mb-2 bg-light text-dark">
 	{% block nav %}
-		<div class = "container">
-			<a href = "{% url 'company_list'%}">
-				<button type="button" class="btn btn-outline-primary btn-sm">Home</button>
-			</a>
-			{% if user.is_authenticated %}
-				<a href = "{% url 'user_log_out'%}"><button > Log Out </button></a>
-				<a href = "#"><button > Profile </button></a>
 
-				{% else %}
-				<a href = "{% url 'user_sign_up'%}"><button > Register </button></a>
+		<!-- <nav class="navbar navbar-expand-lg fixed-top navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
+		  <div class="container-fluid">
+		  	<div class="container">
+		  		<div class="row navbar-nav">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#">Knowhere</a>
+				    </div>
+				    
+				    <div class="col nav-item active"><a class="nav-link" href="{% url 'company_list'%}">Home</a></div>
+				    <ul class="nav navbar-nav navbar-right">
+				    	{% if user.is_authenticated %}				   
+					   
+					      <li><a href = "{% url 'user_log_out'%}"><button class="btn btn-primary my-2 my-sm-0 mr-3">Log Out</button></a></li>
+					      <li><a href = "#"><button class="btn btn-primary my-2 my-sm-0">Profile</button></a></li>
 
-				<a href = "{% url 'user_log_in'%}"><button > Log In </button></a>
+					    {% else %}
+					      <li><a href = "{% url 'user_sign_up'%}"><button class="btn btn-primary my-2 my-sm-0 mr-3">Register</button></a></li>
+					      <li><a href = "{% url 'user_log_in'%}"><button class="btn btn-primary my-2 my-sm-0">Log In</button></a></li>
+					    {% endif %}
+				    </ul>
+				</div>			
+			</div>
+		  </div>
+		</nav>
+ -->
+
+		<nav class="navbar navbar-expand-lg fixed-top navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
+			<div class="container-fluid mx-3">
+			  <a class="navbar-brand" href="{% url 'company_list'%}">Knowhere</a>
+
+			  
+			    <div class="navbar-nav mr-auto">
+			      
+			        <a class="nav-link" href="{% url 'company_list'%}">Home <span class="sr-only">(current)</span></a>
+    			</div>
+
+				{% if user.is_authenticated %}				   
+			   
+			      <a href = "{% url 'user_log_out'%}"><button class="btn btn-primary my-2 my-sm-0 mr-3">Log Out</button></a>
+			      <a href = "#"><button class="btn btn-primary my-2 my-sm-0">Profile</button></a>
+
+			    {% else %}
+			      <a href = "{% url 'user_sign_up'%}"><button class="btn btn-primary my-2 my-sm-0 mr-3">Register</button></a>
+			      <a href = "{% url 'user_log_in'%}"><button class="btn btn-primary my-2 my-sm-0">Log In</button></a>
+			    {% endif %}
+
+			</div>
+		</nav>
+{% endblock %}
+	
+	<br><br><br>
+
+			{% if messages %}
+				{% for message in messages %}
+				{{message}}
+				{% endfor %}
 			{% endif %}
-		</div>
-	{% endblock %}
-	{% if messages %}
-		{% for message in messages %}
-		{{message}}
-		{% endfor %}
-	{% endif %}
-	{% block body %}
+			{% block body %}
 
-	{% endblock %}
+			{% endblock %}
+
+<br><br>
+<!-- Footer -->
+<div class="page-footer font-small bg-dark pt-4" style=" margin-right: -16px; margin-left: -16px; padding-bottom: 30px;">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+      <!-- Footer links -->
+      <div class="row text-center text-md-left mt-3 pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-3 text-white col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Knowhere</h6>
+          <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit.</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 text-white font-weight-bold">Products</h6>
+          <p>
+            <a class="text-muted" href="#!">MDBootstrap</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">MDWordPress</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">BrandFlow</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">Bootstrap Angular</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 text-white font-weight-bold">Useful links</h6>
+          <p>
+            <a class="text-muted" href="#!">Your Account</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">Become an Affiliate</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">Shipping Rates</a>
+          </p>
+          <p>
+            <a class="text-muted" href="#!">Help</a>
+          </p>
+        </div>
+
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-4 text-white col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+          <p>
+            <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+          <p>
+            <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Footer links -->
+
+    </div>
+    <!-- Footer Links -->
+
+  </div>
+  <!-- Footer -->
+
+  <!-- Grid row -->
+      <div class="row d-flex align-items-center" style="background-color: black; margin-bottom: -25px; padding: 30px;">
+
+        <!-- Grid column -->
+        <div class="col-md-7 col-lg-8">
+
+          <!--Copyright-->
+          <p class="text-center text-white text-md-left">© 2019 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/">
+              <strong class="text-muted"> knowhere.com</strong>
+            </a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        
+      </div>
+      <!-- Grid row -->
+
+		
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 </body>

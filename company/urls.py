@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import CompanyListView, CompanyDetailView, CompanyCreateView, CompanyUpdateView, CompanyDeleteView
 urlpatterns = [
 	path('', CompanyListView.as_view(), name = 'company_list'),
@@ -9,3 +12,5 @@ urlpatterns = [
 	path('<int:pk>/delete/', CompanyDeleteView.as_view(), name = 'company_update'),
 	path('funcreate/', views.create_company, name = 'create_company'),
 ]
+urlpatterns += staticfiles_urlpatterns()
+

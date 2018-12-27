@@ -1,5 +1,32 @@
 {% extends 'company/base.html' %}
 {% block body %}
+<style>
+  .thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+}
+input:placeholder-shown{
+	background-color:  #ffffff!important;
+}
+</style>
+
+<div class="row" id="box-search">
+    <div class="thumbnail text-center">
+        <img src="/static/display.png" width="100%" alt="My image" class="img-responsive">
+        <div class="caption">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-lg-2 bg-transparent text-white mx-sm-5" type="search"
+                placeholder="Search" aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </div>
+</div>
 	{% for company in companies %}
 		<a href ="{% url 'company_detail' company.pk %}">{{company.name}}</a>
 		{{company.name}}
